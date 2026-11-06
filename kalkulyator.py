@@ -22,24 +22,26 @@ print("\n2-QADAM: str -> float konvertatsiya")
 print(f"  a: {a_str!r} ({type(a_str).__name__})  ->  {a} ({type(a).__name__})")
 print(f"  b: {b_str!r} ({type(b_str).__name__})  ->  {b} ({type(b).__name__})")
 
-# Arifmetik amallar
-qoshish    = a + b
-ayirish    = a - b
+# 3-qadam: arifmetik amallar
+qoshish     = a + b
+ayirish     = a - b
 kopaytirish = a * b
+bolish      = a / b if b != 0 else None   # 0 ga bo'lishni tekshirish
 
-print("\n" + "-" * 30)
-print("NATIJALAR:")
-print("-" * 30)
-print(f"{a} + {b} = {round(qoshish, 2)}")
-print(f"{a} - {b} = {round(ayirish, 2)}")
-print(f"{a} * {b} = {round(kopaytirish, 2)}")
 
-# 0 ga bo'lishni tekshirish
-if b == 0:
-    print(f"{a} / {b} = Xato: 0 ga bo'lib bo'lmaydi!")
-else:
-    bolish = a / b
-    print(f"{a} / {b} = {round(bolish, 2)}")
-    print("\nBo'lish natijasi turi:", type(bolish).__name__)
+def natija_chiqar(belgi, natija):
+    """Bitta amal natijasini va uning turini bir xil formatda chiqaradi."""
+    ifoda = f"{a} {belgi} {b}"
+    if natija is None:
+        print(f"  {ifoda:<14} = Xato: 0 ga bo'lib bo'lmaydi!")
+    else:
+        print(f"  {ifoda:<14} = {round(natija, 2):<10} tur: {type(natija).__name__}")
 
-print("-" * 30)
+
+print("\n3-QADAM: Natijalar")
+print("-" * 40)
+natija_chiqar("+", qoshish)
+natija_chiqar("-", ayirish)
+natija_chiqar("*", kopaytirish)
+natija_chiqar("/", bolish)
+print("-" * 40)
